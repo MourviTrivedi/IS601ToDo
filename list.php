@@ -1,7 +1,7 @@
 <?php
-echo "<h1>To do list system</h1><br/>";
+echo "<h1>To-Do List System</h1><br/>";
 echo "Welcome, ".$_COOKIE['login'].'<br />';
-echo "Below you my find your to-do list items: ";
+echo "Below is your To-Do List Items:";
 echo "</ br> </ br>";
 
 ?>
@@ -12,18 +12,27 @@ echo "</ br> </ br>";
       
          <?php foreach($result as $res):?>
            
-	 <tr><a href="url">link_text</a>  
+	 <tr>
 	   <td> <?php echo $res['todo_item']; ?> </td>
 	   <td>
-	      <form action='index.php' method='post'>
-	      <input type='hidden' name='item_id' value'<?php echo $res['id'] ?>'>
+	     <form action='index.php' method='post'>
+	      <input type='hidden' name='item_id' value= <?php echo $res['id']; ?> >
 	      <input type='hidden' name='action' value='delete'>
-	      <input type='submit' value"Delete"> </form>
+	      <input type='submit' value="Delete"/> 
+	     </form>
 	      </td>
+		<td>
+	      <form action='index.php' method='post'>
+	      <input type='hidden' name='item_id' value= <?php echo $res['id']; ?> >
+	      <input type='hidden' name='action' value='Edit'>
+	      <input type='submit' value="Edit"/> 
+	      </form>
+	    </td>
+
 	 </tr>
-	 <?php end foreach;?>
+	 <?php endforeach;?>
     </table>
-	<form method = 'post' action='index.php'>
+	<form method = 'post' action='index.php'><br>
            <strong>Description: </strong> 
 	   <input type='text' name='description'/><br>
 	   <input type='hidden' name = 'action' value='add'><br>
