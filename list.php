@@ -15,24 +15,24 @@ echo "</ br> </ br>";
 	 <tr>
 	   <td> <?php echo $res['todo_item']; ?> </td>
 	   <td>
-	     <form action='index.php' method='post'>
+	     <form action='index.php' method='POST'>
 	      <input type='hidden' name='item_id' value= <?php echo $res['id']; ?> >
 	      <input type='hidden' name='action' value='delete'>
-	      <input type='submit' value="Delete"/> 
+	      <input type='submit' value="delete"/> 
 	     </form>
 	      </td>
 		<td>
-	      <form action='index.php' method='post'>
+	      <form action='index.php' method='POST'>
 	      <input type='hidden' name='item_id' value= <?php echo $res['id']; ?> >
 	      <input type='hidden' name='action' value='Edit'>
-	      <input type='submit' value="Edit"/> 
+	      <input type='submit' value="Edit"/><input type="text" name="new_description">
 	      </form>
 	    </td>
 
 	 </tr>
 	 <?php endforeach;?>
     </table>
-	<form method = 'post' action='index.php'><br>
+	<form method = 'POST' action='index.php'><br>
            <strong>Description: </strong> 
 	   <input type='text' name='description'/><br>
 	   <input type='hidden' name = 'action' value='add'><br>
