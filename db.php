@@ -1,16 +1,7 @@
 <?php
- function deleteTodoItems($user_id,$todo_id){
+  function addTodoItem($user_id,$todo_text) {
   global $db;
-  $query = ' delete from todos where id = :todo_id and user_id = :user_id';
-  $statement = $db->prepare($query);
-  $statement->bindValue(':userid',$user_id);
-  $statement->bindValue(':todoid',$todo_id);
-  $statement->execute();
-  $statement->closeCursor();
- }
-  function addTodoItems($user_id,$todo_text) {
-  global $db;
-  $query = 'insert into todos(user_id, todo_item) values (:userid,:todo_text)';
+  $query = 'insert into todos(user_id,todo_item) values (:userid,:todo_text)';
   $statement = $db->prepare($query);
   $statement->bindValue(':userid',$user_id);
   $statement->bindValue(':todo_text',$todo_text);
@@ -28,9 +19,32 @@
     $statement->closeCursor();
     return $result;
 }
+
+function editTodoItems($todo_item,$todo_id)
+{
+  global $db;
+  echo "working";
+  $query = 'UPDATE `todos` SET `todo_item` = :todo_item WHERE `todos`.`id` = :todo_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':todo_item',$todo_item);
+    $statement->bindValue(':todo_id',$todo_id);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function deleteTodoItems($user_id,$todo_id){
+  global $db;
+  $query = 'delete from todos where id = :todo_id and user_id = :user_id';
+  $statement = $db->prepare($query);
+  $statement->bindValue(':userid',$user_id);
+  $statement->bindValue(':todo_id',$todo_id);
+  $statement->execute();
+  $statement->closeCursor();
+ }
+
   function createUser($username, $password) {
     global $db;
-    $query = 'select * from users where username = :name ';
+    $query = 'select * from users where username = :name';
     $statement = $db->prepare($query);
     $statement->bindValue(':name',$username);
     $statement->execute();
@@ -65,10 +79,9 @@
      $count = $statement->rowCount();
      if($count == 1){
         setcookie('login',$username);
-	echo $username;
-	setcookie('my_id',$result[0]['id']);
-	setcookie('islogged',true);
-       return true;
+	      setcookie('my_id',$result[0]['id']);
+	      setcookie('islogged',true);
+        return true;
      }else{
      unset($_COOKIE['login']);
      setcookie('login',false);
