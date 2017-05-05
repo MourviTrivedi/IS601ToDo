@@ -30,7 +30,7 @@ echo "</ br> </ br>";
 	    </td>
 
 	 </tr>
-	 <?php endforeach;?>
+	 <?php end foreach;?>
     </table>
 	<form method = 'post' action='index.php'><br>
            <strong>Description: </strong> 
