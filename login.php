@@ -52,7 +52,8 @@
       </div>
       <div>
         <button type="submit">Login</button>
-	<button type="submit">Sign up</button>
+	<br />
+	<a href="signup.php">Sign up</a>
       </div>
     </form>
 
