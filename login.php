@@ -11,7 +11,7 @@
     div.container {
       padding:6px;
       width:300px;
-      margin:10px auto;
+      margin:20px auto;
       text-align:center; 
       background-color: #E1DFDF;
       border-radius: 10px;
