@@ -2,6 +2,7 @@
 require('db_connection.php');
 require('db.php');
  $action = filter_input(INPUT_POST, 'action');
+ //echo $action.'currentaction'; --thisworks
  if($action == NULL)
  {
   $action = "show_login_page";
@@ -21,22 +22,50 @@ if($action == "show_login_page")
   }else{
     header("Location: badInfo.php");
   }
-}else if ($action == 'registrar')
+}else if ($action == 'register')
 {
- // echo "we want to create a new account";
- $name = filter_input(INPUT_POST, 'reg_uname');
+ 
+ $name = filter_input(INPUT_POST, 'uname');
  if(isset($name))
  {
-   $pass = filter_input(INPUT_POST, 'reg_password');
-   $exit = createUser($name, $pass);
+  // echo "we want to create a new account";
+   $pass = filter_input(INPUT_POST, 'password');
+   $first_n = filter_input(INPUT_POST, 'first_name');
+   $last_n = filter_input(INPUT_POST, 'last_name');
+   $email = filter_input(INPUT_POST, 'email');
+   $phone_n = filter_input(INPUT_POST, 'phonenumber');
+   $birthday = filter_input(INPUT_POST, 'birthday');
+   $gender = filter_input(INPUT_POST, 'G');
+
+
+   $query = "INSERT INTO `mt67`.`users`(`username`,`passwordHash`, `Firstname`, `Lastname`, `email`, `phonenumber`, `birthday`, `gender`)
+   VALUES ('$first_n','$last_n','uname','password',$email','$phone_n','$birthday','$gender')";
+
+   $exit= createUser($name,$pass,$first_n,$last_n,$email,$phone_n,$birthday,$gender);
+
    if($exit == true)
  {
    include('user_exit.php');
  }else {
-   header("Location: login.php");
+   //header("Location: login.php");
    }
  }
-}else if ($action == 'add')
+}
+
+else if ($action == 'Edit'){
+if (isset($_POST['new_description']) and isset($_POST['item_id']))
+     {
+      echo $_POST['new_description'];
+      $todo_item=$_POST['new_description'];
+      $todo_id=$_POST['item_id'];
+
+     editTodoItems($todo_item,$todo_id);
+     }
+   
+     $result = getTodoItems($_COOKIE['my_id']);
+      include('list.php');
+}
+else if ($action == 'add')
 {
   if(isset($_POST['description']) and $_POST['description']!='')
   {
@@ -44,12 +73,18 @@ if($action == "show_login_page")
   }
   $result = getTodoItems($_COOKIE['my_id']);
   include('list.php');
-}else if ($action == 'delete') {
-  if(isset($_post['item_id'])){
-      $selected = $_POST['item_id'];
-      deleteTodoItem($_COOKIE['my_id'],$selected);
+}
 
- $result = getTodoItems($_COOKIE['my_id']);
- include('list.php');
- }}
+else if ($action == 'delete') 
+{
+  if(isset($_POST['item_id']))
+{
+      $selected = $_POST['item_id'];
+      //echo $_POST['item_id'].$_COOKIE['my_id'];
+      deleteTodoItems($_COOKIE['my_id'],$selected);
+
+    $result = getTodoItems($_COOKIE['my_id']);
+    include('list.php');
+  }
+}
 ?>
