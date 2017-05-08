@@ -1,16 +1,21 @@
 <html>
 <head>
-  <title>Enter Login</title>
+  <title>To Do List System</title>
   <style type="text/css">
+    body {
+      background-image: url(http://wallpaperpulse.com/img/1331570.jpg);
+    }
+    h1 {
+      color: #fff;
+    }
     div.container {
       padding: 6px;
       width:300px;
       margin:20px auto;
-      text-align:center;  
-    }
-    .login div {
-      border:2px solid #fff;
-      padding:3px;
+      text-align:center; 
+      background-color: #E1DFDF;
+      border-radius: 10px;
+      border:2px solid; 
     }
     .register div {
       border:2px solid #fff;
@@ -32,7 +37,7 @@
       font-size:medium;
     }
     #wrap {
-       padding-top: 100px;
+       padding-top: 110px;
        border: 2px;
        border-color: black;
  }
@@ -40,24 +45,27 @@
 </head>
 <div id="wrap">
 <body>
+  <h1 align="center">To Do List</h1>
   <div class='container' align="center">
    <h3 align="center">Please Enter Your Login:</h3>
     <form method = "post" action="index.php" class="login">
       <div>
-        <label><b>Username:</b></label>
+        <label><strong>Username:</strong></label>
         <input type="text" name="reg_uname" required>
-        <label><b>Password:</b></label>
+        <label><strong>Password:</strong></label>
         <input type="password" name="reg_password" required>
         <input type ="hidden" name="action" value="test_user">
       </div>
-      <div>
+  <div>
         <button type="submit">Login</button>
-	<br />
-	<a href="signup.php">Sign up</a>
-      </div>
     </form>
 
+	   <form action="register.php" class="register">
+      <button type="submit">Register</button>
+     </form>
   </div>
+
+
 </div>
 </body>
 
