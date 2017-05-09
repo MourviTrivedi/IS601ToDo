@@ -28,26 +28,26 @@ if($action == "show_login_page")
  $name = filter_input(INPUT_POST, 'uname');
  if(isset($name))
  {
-  // echo "we want to create a new account";
+   echo "we want to create a new account";
    $pass = filter_input(INPUT_POST, 'password');
    $first_n = filter_input(INPUT_POST, 'first_name');
    $last_n = filter_input(INPUT_POST, 'last_name');
    $email = filter_input(INPUT_POST, 'email');
-   $phone_n = filter_input(INPUT_POST, 'phonenumber');
+   $phone_n = filter_input(INPUT_POST, 'number');
    $birthday = filter_input(INPUT_POST, 'birthday');
-   $gender = filter_input(INPUT_POST, 'G');
+   $gender = filter_input(INPUT_POST, 'g');
 
 
-   $query = "INSERT INTO `mt67`.`users`(`username`,`passwordHash`, `Firstname`, `Lastname`, `email`, `phonenumber`, `birthday`, `gender`)
-   VALUES ('$first_n','$last_n','uname','password',$email','$phone_n','$birthday','$gender')";
-
+  $query = "INSERT INTO `mt67`.`users`(`username`,`passwordHash`, `Firstname`, `lastname`, `email`, `phone`, `birthday`, `gender`)
+   VALUES ('$name','$pass','$first_n','$last_n','$email','$phone_n','$birthday','$gender')";
+      
    $exit= createUser($name,$pass,$first_n,$last_n,$email,$phone_n,$birthday,$gender);
 
    if($exit == true)
  {
-   include('user_exit.php');
+   header("Location: login.php");
  }else {
-   //header("Location: login.php");
+   header("Location: login.php");
    }
  }
 }
@@ -69,7 +69,7 @@ else if ($action == 'add')
 {
   if(isset($_POST['description']) and $_POST['description']!='')
   {
-    addTodoItem($_COOKIE['my_id'],$_POST['description']);
+    addTodoItem($_COOKIE['my_id'],$_POST['description'],$_POST['Date'],$_POST['Time']);
   }
   $result = getTodoItems($_COOKIE['my_id']);
   include('list.php');
@@ -79,6 +79,7 @@ else if ($action == 'delete')
 {
   if(isset($_POST['item_id']))
 {
+  //echo 'delete';
       $selected = $_POST['item_id'];
       //echo $_POST['item_id'].$_COOKIE['my_id'];
       deleteTodoItems($_COOKIE['my_id'],$selected);
