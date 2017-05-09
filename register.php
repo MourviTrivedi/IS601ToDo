@@ -49,7 +49,7 @@
 <div id="wrap">
 <div class='container'>
 <form action="index.php" method="POST">
-<h2>Register</h2>
+<h2>Create an Account</h2>
 <table align="center">
    <tbody>
      <tr><td><label><strong>First Name:</strong></label></td><td><input name="first_name" type="text"></td></tr>
@@ -67,9 +67,10 @@
   </tbody>
   </table>
 <br />
-<div id="button" align="center">
-<input type="submit">Submit</input>
+<div align="center">
+<input id="button"type="submit"></input>
 <input type="hidden" name="action" value="register">
+
 </div>
 </form>
 
