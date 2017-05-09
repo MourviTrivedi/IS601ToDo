@@ -23,7 +23,6 @@
 function editTodoItems($todo_item,$todo_id)
 {
   global $db;
-  echo "working";
   $query = 'UPDATE `todos` SET `todo_item` = :todo_item WHERE `todos`.`id` = :todo_id';
     $statement = $db->prepare($query);
     $statement->bindValue(':todo_item',$todo_item);
@@ -42,9 +41,9 @@ function deleteTodoItems($user_id,$todo_id){
   $statement->closeCursor();
  }
 
-  function createUser($username, $password) {
+  function createUser($firstn,$lastn,$username,$password,$email,$phonen,$birthday,$gender) {
     global $db;
-    $query = 'select * from users where username = :name';
+    $query = 'SELECT * FROM users WHERE username = :name';
     $statement = $db->prepare($query);
     $statement->bindValue(':name',$username);
     $statement->execute();
@@ -52,11 +51,13 @@ function deleteTodoItems($user_id,$todo_id){
     $statement->closeCursor();
     $count = $statement->rowCount();
     if($count > 0)
+    
     {
        return true;
     }else {
-     $query = 'insert into users (username, passwordHash) values 
-        (:name, :pass)';
+    
+    $query = "INSERT INTO `mt67`.`users`(`username`,`passwordHash`, `Firstname`, `lastname`, `email`, `phone`, `birthday`, `gender`)
+   VALUES ('$username','$password','$firstn','$lastn','$email','$phonen','$birthday','$gender')";
      $statement = $db->prepare($query);
      $statement->bindValue(':name',$username);
      $statement->bindValue(':pass',$password);
@@ -65,6 +66,7 @@ function deleteTodoItems($user_id,$todo_id){
      return false;
     }
   }
+  
   function isUserValid($username,$password){
      global $db;
      $query = 'select * from users where username = :name and
