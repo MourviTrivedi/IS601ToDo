@@ -6,9 +6,9 @@
       background-image: url(http://wallpaperpulse.com/img/1331570.jpg);
     }
 	div.container {
-           padding: 6px;
+       padding: 6px;
 	   width:400px;
-           margin:20px auto;
+       margin:20px auto;
 	   text-align:center;
 	   background-color: #F5F4F4;
 	   border-radius: 10px;
@@ -16,7 +16,7 @@
          }
        .signup div {
 	   border:2px solid #fff;
-           padding:3px;
+       padding:3px;
 	}
 	/* .register div {
 	   border:2px solid #fff;
@@ -29,7 +29,7 @@
 	   font: arial;
 	}
 	#button {
-           background-color: #8B0000;
+       background-color: #8B0000;
 	   color: white;
 	   padding: 6px 15px;
 	   margin: auto;
@@ -68,7 +68,7 @@
   </table>
 <br />
 <div id="button" align="center">
-<input type="submit">
+<input type="submit">Submit</input>
 <input type="hidden" name="action" value="register">
 </div>
 </form>
