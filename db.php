@@ -31,15 +31,18 @@ function editTodoItems($todo_item,$todo_id)
     $statement->closeCursor();
 }
 
-function deleteTodoItems($user_id,$todo_id){
+function deleteTodoItems($user_id,$todo_id)
+{
   global $db;
-  $query = 'delete from todos where id = :todo_id and user_id = :user_id';
+  $query = "delete from `todos` where id = '$todo_id' and user_id = '$user_id'";
+  //echo $query;
   $statement = $db->prepare($query);
-  $statement->bindValue(':userid',$user_id);
-  $statement->bindValue(':todo_id',$todo_id);
+  //$statement->bindValue(':userid',$user_id);
+  //$statement->bindValue(':todo_id',$todo_id);
   $statement->execute();
   $statement->closeCursor();
  }
+
 
   function createUser($firstn,$lastn,$username,$password,$email,$phonen,$birthday,$gender) {
     global $db;
